@@ -208,7 +208,7 @@
     if (collection.length === 0) {
       return false;
     }
-    
+
     var endOfCollection = collection.length - 1;
     var hasSome = false;
     iterator = iterator || _.identity;
@@ -242,6 +242,12 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    for (var i = 1, length = arguments.length; i < length; i++) {
+      for (var key in arguments[i]) {
+        obj[key] = arguments[i][key];
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
